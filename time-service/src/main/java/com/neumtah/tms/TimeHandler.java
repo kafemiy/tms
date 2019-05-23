@@ -3,6 +3,8 @@
  */
 package com.neumtah.tms;
 
+import java.time.LocalDateTime;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -17,9 +19,9 @@ import reactor.core.publisher.Mono;
  */
 @Component
 public class TimeHandler {
-	public Mono<ServerResponse> hello(ServerRequest request) {
-		return ServerResponse.ok().contentType(MediaType.TEXT_PLAIN)
-			.body(BodyInserters.fromObject("Hello, Spring!"));
+	public Mono<ServerResponse> getDate(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+			.body(BodyInserters.fromObject(LocalDateTime.now().toLocalDate()));
 	}
 
 }

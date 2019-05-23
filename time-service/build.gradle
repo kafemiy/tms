@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.0.M3'
 	id 'java'
+	id 'com.google.cloud.tools.jib' version '1.2.0'
 }
 
 apply plugin: 'io.spring.dependency-management'
@@ -29,4 +30,22 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
+}
+
+//tasks.build.dependsOn tasks.jib
+jib {
+  from {
+    image = 'openjdk:12.0.1-oraclelinux7'
+  }
+  to {
+      image = 'neumtah/time-master-service'
+//    image = 'gcr.io/nmh-gcp-project/tms-app'
+      tags = ['0.0.1', 'latest']
+    auth {
+        username = USERNAME
+        password = PASSWORD
+//      username = 'oauth2accesstoken'
+//      password = 'gcloud auth print-access-token'.execute().text.trim()
+    }
+  }
 }

@@ -21,6 +21,6 @@ public class TimeRouter {
 	public RouterFunction<ServerResponse> route(TimeHandler timeHandler) {
 
 		return RouterFunctions
-			.route(RequestPredicates.GET("/hello").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), timeHandler::hello);
+			.route(RequestPredicates.GET("/date").and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), timeHandler::getDate);
 	}
 }

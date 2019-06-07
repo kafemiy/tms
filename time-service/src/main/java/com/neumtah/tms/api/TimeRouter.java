@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.neumtah.tms;
+package com.neumtah.tms.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +21,9 @@ public class TimeRouter {
 	public RouterFunction<ServerResponse> route(TimeHandler timeHandler) {
 
 		return RouterFunctions
-			.route(RequestPredicates.GET("/date").and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), timeHandler::getDate);
+			.route(RequestPredicates.GET("/date")
+					.and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), timeHandler::getDate)
+			.andRoute(RequestPredicates.GET("/rfdate")
+					.and(RequestPredicates.accept(MediaType.APPLICATION_JSON)), timeHandler::getRemoteFullDate);
 	}
 }

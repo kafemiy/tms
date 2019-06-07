@@ -35,7 +35,7 @@ dependencies {
 //tasks.build.dependsOn tasks.jib
 jib {
   from {
-    image = 'openjdk:12.0.1-oraclelinux7'
+    image = 'openjdk:13-alpine'
   }
   to {
       image = 'neumtah/time-master-service'
